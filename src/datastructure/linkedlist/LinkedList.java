@@ -118,6 +118,12 @@ public class LinkedList {
     }
 
 
+    /**
+     * method to merge two sorted linked list
+     * @param first
+     * @param second
+     * @return
+     */
     public Node mergeSortedList(Node first, Node second) {
         Node sortedList = null;
         Node temp = null;
@@ -163,6 +169,27 @@ public class LinkedList {
 
 
         return sortedList;
+    }
+
+
+    public Node mergeSortListRecursive(Node left, Node right){
+        Node result = null;
+
+        if(left == null)
+            return right;
+
+        if(right == null)
+            return left;
+
+        if(left.data <= right.data){
+            result = left;
+            result.next = mergeSortListRecursive(left.next, right);
+        }else{
+            result = right;
+            result.next = mergeSortListRecursive(left, right.next);
+        }
+
+        return result;
     }
 
 }
