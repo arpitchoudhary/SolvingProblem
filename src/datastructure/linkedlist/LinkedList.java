@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 
 public class LinkedList {
 
-    // only to make this accessible inside main method
     Node head;
 
     /**
@@ -79,7 +78,7 @@ public class LinkedList {
     }
 
 
-    public void reverseRecursion(){
+    public void reverseRecursion() {
         reverseLinkedListWithRecursion(head);
     }
 
@@ -116,6 +115,54 @@ public class LinkedList {
         traverseLinkedListInReverse(node.next);
         System.out.print(" ---- " + node.data);
 
+    }
+
+
+    public Node mergeSortedList(Node first, Node second) {
+        Node sortedList = null;
+        Node temp = null;
+
+        while (first != null && second != null) {
+
+            if (first.data <= second.data) {
+                if (sortedList == null) {
+                    sortedList = new Node(first.data);
+                    temp = sortedList;
+                    first = first.next;
+                } else {
+                    temp.next = new Node(first.data);
+                    first = first.next;
+                    temp = temp.next;
+                }
+
+            } else {
+                if (sortedList == null) {
+                    sortedList = new Node(second.data);
+                    temp = sortedList;
+                    second = second.next;
+                } else {
+                    temp.next = new Node(second.data);
+                    second = second.next;
+                    temp = temp.next;
+                }
+
+            }
+        }
+
+        while (first != null) {
+            temp.next = new Node(first.data);
+            first = first.next;
+            temp = temp.next;
+        }
+
+        while (second != null) {
+            temp.next = new Node(second.data);
+            second = second.next;
+            temp = temp.next;
+        }
+
+
+        return sortedList;
     }
 
 }
