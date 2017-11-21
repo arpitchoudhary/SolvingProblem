@@ -5,7 +5,7 @@ import com.sun.istack.internal.NotNull;
 public class LinkedList {
 
     // only to make this accessible inside main method
-    static Node head;
+    Node head;
 
     /**
      * sample node class
@@ -79,6 +79,10 @@ public class LinkedList {
     }
 
 
+    public void reverseRecursion(){
+        reverseLinkedListWithRecursion(head);
+    }
+
     /**
      * Reverse the list with recursion
      *
@@ -97,6 +101,10 @@ public class LinkedList {
         temp.next = node;
         node.next = null;
 
+    }
+
+    public void traverseReverse() {
+        traverseLinkedListInReverse(head);
     }
 
     public void traverseLinkedListInReverse(Node node) {
