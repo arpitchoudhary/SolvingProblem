@@ -120,6 +120,7 @@ public class LinkedList {
 
     /**
      * method to merge two sorted linked list
+     *
      * @param first
      * @param second
      * @return
@@ -171,25 +172,80 @@ public class LinkedList {
         return sortedList;
     }
 
-
-    public Node mergeSortListRecursive(Node left, Node right){
+    /**
+     * Merge two linked sorted list recursively.
+     *
+     * @param left
+     * @param right
+     * @return
+     */
+    public Node mergeSortListRecursive(Node left, Node right) {
         Node result = null;
 
-        if(left == null)
+        if (left == null)
             return right;
 
-        if(right == null)
+        if (right == null)
             return left;
 
-        if(left.data <= right.data){
+        if (left.data <= right.data) {
             result = left;
             result.next = mergeSortListRecursive(left.next, right);
-        }else{
+        } else {
             result = right;
             result.next = mergeSortListRecursive(left, right.next);
         }
 
         return result;
+    }
+
+    /**
+     * return the merge point for the two linked list,
+     * return nulls if there is no merge point between two lists
+     *
+     * @param first
+     * @param second
+     * @return
+     */
+    public Node mergePointInList(Node first, Node second) {
+
+        Node result = null;
+
+        int firstLength = getLength(first);
+        int secondLength = getLength(second);
+        int difference = firstLength - secondLength;
+
+        if (firstLength < secondLength) {
+
+            Node temp = first;
+            first = second;
+            second = temp;
+            difference *= -1;
+        }
+
+
+        for (int i = 0; i < difference; i++) {
+            first = first.next;
+        }
+
+        while (first != null && second != null) {
+            if (first == second) {
+                result = first;
+                return result;
+            }
+
+            first = first.next;
+            second = second.next;
+        }
+
+        return result;
+    }
+
+    private int getLength(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + getLength(node.next);
     }
 
 }
