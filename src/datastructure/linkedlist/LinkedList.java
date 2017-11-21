@@ -1,4 +1,4 @@
-package datastructure;
+package datastructure.linkedlist;
 
 import com.sun.istack.internal.NotNull;
 

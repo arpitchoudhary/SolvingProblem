@@ -1,6 +1,6 @@
-package datastructure;
+package datastructure.linkedlist;
 
-public class ReverseListWithRecursion extends LinkedList{
+public class ReverseListWithRecursion extends LinkedList {
 
 
 
