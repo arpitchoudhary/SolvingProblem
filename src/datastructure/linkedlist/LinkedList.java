@@ -248,4 +248,27 @@ public class LinkedList {
         return 1 + getLength(node.next);
     }
 
+    /**
+     * 1->2->3->4->5 then the function should change it to 2->1->4->3->5
+     */
+    public void pairWiseSwap(Node node) {
+
+        Node traverse = node;
+
+        while (node != null && node.next != null) {
+            int temp = node.data;
+            node.data = node.next.data;
+            node.next.data = temp;
+            node = node.next.next;
+        }
+
+
+
+        while (traverse != null) {
+            System.out.print(" ---- " + traverse.data);
+            traverse = traverse.next;
+        }
+
+    }
+
 }
