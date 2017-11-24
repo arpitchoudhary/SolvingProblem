@@ -263,11 +263,71 @@ public class LinkedList {
         }
 
 
-
         while (traverse != null) {
             System.out.print(" ---- " + traverse.data);
             traverse = traverse.next;
         }
+
+    }
+
+    /**
+     * api to detect if there is any loop in the list
+     * if remove loop is true than remove the loop after detecting it.
+     *
+     * @param head
+     * @param
+     */
+    void detectLoopInList(Node head, boolean removeLoop) {
+
+        if (head == null || head.next == null) {
+            System.out.println("There is no loop in the list");
+            return;
+        }
+
+        Node slw = head;
+        Node fst = slw;
+
+        boolean isFound = false;
+
+        while (slw != null && fst != null && fst.next != null) {
+
+            slw = slw.next;
+            fst = fst.next.next;
+
+            if (slw == fst) {
+                isFound = true;
+                break;
+            }
+
+
+        }
+
+        if (!isFound) {
+            System.out.println("No Loop Detected");
+            return;
+        }
+
+        detectStartPoint(head, slw, removeLoop);
+
+    }
+
+    private void detectStartPoint(Node head, Node slw, boolean removeLoop) {
+
+        Node temp = head;
+        Node removeLinkOf = null;
+
+        while (temp != slw) {
+
+            if (removeLoop && temp.next == slw.next) {
+                removeLinkOf = slw;
+            }
+
+            temp = temp.next;
+            slw = slw.next;
+        }
+
+        System.out.println(" The Node " + temp.data + " is starting point of the loop in the list ");
+        removeLinkOf.next = null;
 
     }
 

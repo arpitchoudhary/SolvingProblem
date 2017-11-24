@@ -81,11 +81,12 @@ public class BST {
 
     /**
      * in order Traversal
+     *
      * @param root
      */
     void inOrderTraversal(Node root) {
 
-        if (root == null){
+        if (root == null) {
             return;
         }
 
@@ -97,11 +98,12 @@ public class BST {
 
     /**
      * in order Traversal
+     *
      * @param root
      */
     void preOrderTraversal(Node root) {
 
-        if (root == null){
+        if (root == null) {
             return;
         }
 
@@ -113,11 +115,12 @@ public class BST {
 
     /**
      * in order Traversal
+     *
      * @param root
      */
     void postOrderTraversal(Node root) {
 
-        if (root == null){
+        if (root == null) {
             return;
         }
 
