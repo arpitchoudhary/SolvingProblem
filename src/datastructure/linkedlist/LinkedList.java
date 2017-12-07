@@ -5,6 +5,7 @@ import com.sun.istack.internal.NotNull;
 public class LinkedList {
 
     Node head;
+    private int maxValue;
 
     /**
      * sample node class
@@ -47,6 +48,8 @@ public class LinkedList {
      */
     public Node createLinkedList(@NotNull int... values) {
 
+        maxValue = 0;
+
         if (values.length == 0) {
             System.out.println("Should not be empty, returning an node with 0 value");
             return new Node(0);
@@ -54,11 +57,17 @@ public class LinkedList {
 
         if (head == null) {
             head = new Node(values[0]);
+            maxValue = values[0];
         }
 
         Node temp = head;
 
         for (int i = 1; i < values.length; i++) {
+
+            if (maxValue <= values[i]) {
+                maxValue = values[i];
+            }
+
             temp.next = new Node(values[i]);
             temp = temp.next;
         }
@@ -328,6 +337,33 @@ public class LinkedList {
 
         System.out.println(" The Node " + temp.data + " is starting point of the loop in the list ");
         removeLinkOf.next = null;
+
+    }
+
+
+    /***
+     * Remove
+     * @param head  [6, 4, 2, 6, 10, 11]
+     */
+    public void removeDuplicate(Node head) {
+
+        int[] hash = new int[maxValue];
+        Node current = head;
+        Node prev = null;
+
+        while (current != null) {
+
+            if (hash[current.data - 1] == 1) {
+                prev.next = current.next;
+                current = current.next;
+                continue;
+            } else {
+                hash[current.data - 1] = 1;
+            }
+
+            prev = current;
+            current = current.next;
+        }
 
     }
 
